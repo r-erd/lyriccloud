@@ -4,7 +4,6 @@ This project allows you to collect song lyrics using the Genius API and generate
 It provides one main script, `main.py` and the `cloud.py` script which can be used independently, but is also used by the `main.py`.
 
 Below you can see the output given the sample `songs.csv`, I think its quite interesting so see. <br>
-*Uh uh. Suh suh. Mhh Mhh. Yeah Yeah.*
 
 ![Sample Image](./resources/wordcloud.png)
 
