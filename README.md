@@ -21,6 +21,11 @@ Below you can see the output given the sample `songs.csv`, I think its quite int
 
 > Note: Make sure that the artists and song names in the `songs.csv` file do not contain commas. If they do, enclose the field in double quotes to escape the commas.
 
+
+```bash
+    python main.py songs.csv results.csv --create_cloud --token YOUR_TOKEN_HERE
+```
+
 ## Requirements
 
 - Python 3.12
