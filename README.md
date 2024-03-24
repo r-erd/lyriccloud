@@ -1,4 +1,4 @@
-# SoundCloud Lyrics Wordcloud
+# LyricCloud Lyrics Wordcloud
 
 This project allows you to collect song lyrics using the Genius API and generate a wordcloud from them. 
 It provides one main script, `main.py` and the `cloud.py` script which can be used independently, but is also used by the `main.py`.
