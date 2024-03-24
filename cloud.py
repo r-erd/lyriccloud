@@ -48,11 +48,21 @@ def create_wordcloud(input_path, output_path):
     #lemmatizer = WordNetLemmatizer()
     #lyrics = ' '.join([lemmatizer.lemmatize(word) for word in lyrics.split()])
 
-    # Create a word cloud, for parameters and customization options,
-    # see https://github.com/amueller/word_cloud/blob/main/examples/colored.py
-
     print("Generating word cloud...")
-    wordcloud = WordCloud(max_font_size=40, background_color="white", random_state=42).generate(lyrics)
+    # other optional parameters: https://amueller.github.io/word_cloud/generated/wordcloud.WordCloud.html
+    # other colormaps https://matplotlib.org/stable/users/explain/colors/colormaps.html
+
+    wordcloud = WordCloud(width = 800,
+                        height = 400, 
+                        max_words = 1000,
+                        prefer_horizontal = 1, 
+                        max_font_size = 100,
+                        scale = 5, 
+                        colormap = "summer",
+                        background_color = "black")
+    
+    wordcloud.generate(lyrics)
+
     wordcloud.to_file(output_path)
     print("Saved word cloud image to:", output_path)
 
