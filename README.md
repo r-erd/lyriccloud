@@ -3,7 +3,7 @@
 This project allows you to collect song lyrics using the Genius API and generate a wordcloud from them. 
 It provides one main script, `main.py` and the `cloud.py` script which can be used independently, but is also used by the `main.py`.
 
-Below you can see the output given the sample `songs.csv`, I think its quite interesting so see. <br>
+Below you can see the output given the sample `songs.csv`, I think its quite interesting to see. <br>
 
 ![Sample Image](./resources/wordcloud.png)
 
