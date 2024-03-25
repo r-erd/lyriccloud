@@ -37,6 +37,14 @@ def create_wordcloud(input_path, output_path):
     lyrics = lyrics.replace('Remix', '')
     lyrics = lyrics.replace('ft', '')
     lyrics = lyrics.replace('Lyrics', '')
+    lyrics = lyrics.replace('value', '')
+    lyrics = lyrics.replace('production', '')
+    lyrics = lyrics.replace('feat', '')
+    lyrics = lyrics.replace('Songtext', '')
+    lyrics = lyrics.replace('Pre Hook', '')
+    lyrics = lyrics.replace('Hook', '')
+    lyrics = lyrics.replace('Part', '')
+    lyrics = lyrics.replace('Intro', '')
 
     # You could add code to remove artist names, song titles, or other specific words here
 
