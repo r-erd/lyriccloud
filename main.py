@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import argparse
 from cloud import create_wordcloud
+import time
 # get Genius API token from here: https://genius.com/api-clients
 
 
@@ -41,9 +42,13 @@ def gather_lyrics(songs_df, token, output_path):
     # Create an empty dataframe to store the results
     results_df = pd.DataFrame(columns=['Artist', 'Song', 'Lyrics'])
 
+    start_time = time.time()
+
     # Initialize the results_df with the content of the results.csv, if it exists
-    if os.path.isfile('results.csv'):
-        results_df = pd.read_csv('results.csv')
+    if os.path.isfile(output_path):
+        print("Loading existing results from:", output_path)
+        print("Continuing from the last checkpoint")
+        results_df = pd.read_csv(output_path)
 
     # Initialize Genius API
     genius = Genius(token)
@@ -57,6 +62,7 @@ def gather_lyrics(songs_df, token, output_path):
     # Iterate through each row in the songs dataframe
 
     artist_name = ""
+    song_counter = 0
     for index, row in songs_df.iterrows():
 
         # Check if the artist-song pair already exists in the results dataframe
@@ -83,8 +89,19 @@ def gather_lyrics(songs_df, token, output_path):
         if song and song.lyrics is not None:
             results_df = pd.concat([results_df, pd.DataFrame({'Artist': [artist_name], 'Song': [song_name], 'Lyrics': [song.lyrics]})], ignore_index=True)
 
+        song_counter += 1
+
+        print("=====================================")
+        print("Currently at song: {} - {}".format(artist_name, song_name))
+        print("Total songs gathered so far:", results_df.shape[0])
+        print("Time elapsed: {:.2f} seconds".format(time.time() - start_time))
+        # Bug: something is not right with the percentage for some reason
+        print("Percentage: {:.2f}%".format((song_counter + 1) / songs_df.shape[0] * 100))
+        print("=====================================")
+
         # Checkpointing: save the results dataframe to a CSV file after every N songs
-        if index % 10 == 0:
+        if song_counter % 5 == 0:
+            print("Saving results after {} songs".format(index))
             results_df.to_csv(output_path, index=False)
 
     return results_df
